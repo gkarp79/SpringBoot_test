@@ -1,20 +1,21 @@
 package com.rubypaper.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Board")
+@SequenceGenerator(name = "BOARD_SEQ_GENERATOR",
+sequenceName="ALL_SEQUENCES",
+initialValue = 1,
+allocationSize = 1)
 public class Board {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "BOARD_SEQ_GENERATOR")
     private Long seq;
     private String title;
     private String writer;
     private String content;
+    @Temporal(TemporalType.DATE)
     private Date createDate;
     private Long cnt;
 
